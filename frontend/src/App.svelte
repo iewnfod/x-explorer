@@ -1,13 +1,15 @@
 <script lang="ts">
     import FilePart from "./FilePart.svelte";
     import LeftBar from "./LeftBar.svelte";
-    import {GetCurrentPath} from "../wailsjs/go/main/App";
-    import {currentPath} from "./data";
+    import {setPath} from "./data";
     import {SvelteUIProvider} from "@svelteuidev/core";
+    import {GetCurrentPath, OnAppReady} from "../wailsjs/go/main/App";
 
     // start up actions
-    GetCurrentPath().then((path) => {
-        currentPath.set(path);
+    OnAppReady().then(() => {
+        GetCurrentPath().then((path) => {
+            setPath(path);
+        });
     });
 </script>
 

@@ -20,7 +20,7 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:             "x-explorer",
 		Width:             1024,
-		Height:            768,
+		Height:            540,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         true,

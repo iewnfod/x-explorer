@@ -1,52 +1,68 @@
 <script lang="ts">
-    import {ActionIcon, Flex} from "@svelteuidev/core";
-    import {writable} from "svelte/store";
-    import {Cross2, Minus, EnterFullScreen, ExitFullScreen} from "radix-icons-svelte";
+    import {ActionIcon, Flex, Image} from "@svelteuidev/core";
+    import {Cross2, Minus, EnterFullScreen} from "radix-icons-svelte";
     import {
         Quit,
-        WindowIsMaximised, WindowMinimise,
+        WindowMinimise,
         WindowToggleMaximise,
     } from "../../wailsjs/runtime";
+    import {writable} from "svelte/store";
+    import Close from "../assets/close.svg";
+    import Minimize from "../assets/minimize.svg";
+    import Maximize from "../assets/maximize.svg";
 
-    const isInFullscreen = writable(false);
+    const showCloseIcon = writable(false);
+    const showMaximizeIcon = writable(false);
+    const showMinimizeIcon = writable(false);
 
     function handleClose() {
         Quit();
     }
 
-    function handleMaximize() {
+    function toggleMaximize() {
         WindowToggleMaximise();
-        isInFullscreen.set(true);
-    }
-
-    function handleUnMaximize() {
-        WindowToggleMaximise();
-        isInFullscreen.set(false);
     }
 
     function handleMinimize() {
         WindowMinimise();
     }
-
-    WindowIsMaximised().then((isFullscreen) => {
-        isInFullscreen.set(isFullscreen);
-    });
 </script>
 
-<Flex direction="row">
-    <ActionIcon on:click={() => handleClose()}>
-        <Cross2/>
+<Flex
+    direction="row"
+    style="gap: var(--small-margin); margin-left: var(--small-margin); padding-top: var(--small-margin)"
+>
+    <ActionIcon
+        on:click={() => handleClose()}
+        radius="xl" variant="filled"
+        size={13} color="red"
+        on:mouseenter={() => showCloseIcon.set(true)}
+        on:mouseleave={() => showCloseIcon.set(false)}
+    >
+        {#if $showCloseIcon}
+            <Image src={Close}/>
+        {/if}
     </ActionIcon>
-    {#if isInFullscreen}
-        <ActionIcon on:click={() => handleUnMaximize()} >
-            <ExitFullScreen/>
-        </ActionIcon>
-    {:else}
-        <ActionIcon on:click={() => handleMinimize()} >
-            <EnterFullScreen/>
-        </ActionIcon>
-    {/if}
-    <ActionIcon on:click={() => handleMinimize()} >
-        <Minus/>
+    <ActionIcon
+            on:click={() => handleMinimize()}
+            radius="xl" variant="filled"
+            size={13} color="yellow"
+            on:mouseenter={() => showMinimizeIcon.set(true)}
+            on:mouseleave={() => showMinimizeIcon.set(false)}
+    >
+        {#if $showMinimizeIcon}
+            <Image src={Minimize}/>
+        {/if}
+    </ActionIcon>
+    <ActionIcon
+            on:click={() => toggleMaximize()}
+            radius="xl" variant="filled"
+            size={13} color="green"
+            on:mouseenter={() => showMaximizeIcon.set(true)}
+            on:mouseleave={() => showMaximizeIcon.set(false)}
+    >
+        {#if $showMaximizeIcon}
+            <Image src={Maximize}/>
+        {/if}
     </ActionIcon>
 </Flex>
