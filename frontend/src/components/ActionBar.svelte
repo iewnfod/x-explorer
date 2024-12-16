@@ -1,6 +1,5 @@
 <script lang="ts">
     import {ActionIcon, Flex, Image} from "@svelteuidev/core";
-    import {Cross2, Minus, EnterFullScreen} from "radix-icons-svelte";
     import {
         Quit,
         WindowMinimise,

@@ -5,7 +5,6 @@
     import {SvelteUIProvider} from "@svelteuidev/core";
     import {GetCurrentPath, OnAppReady} from "../wailsjs/go/main/App";
 
-    // start up actions
     OnAppReady().then(() => {
         GetCurrentPath().then((path) => {
             setPath(path);
