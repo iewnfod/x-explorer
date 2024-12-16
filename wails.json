@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "x-explorer",
+  "outputfilename": "x-explorer",
+  "frontend:install": "yarn",
+  "frontend:build": "yarn build",
+  "frontend:dev:watcher": "yarn dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Iewnfod",
+    "email": "shangzhiqiuyue@outlook.com"
+  }
+}
