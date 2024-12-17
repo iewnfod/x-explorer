@@ -29,7 +29,7 @@
 
 <Flex
     direction="row"
-    style="gap: var(--small-margin); margin-left: var(--small-margin); padding-top: var(--small-margin)"
+    style="gap: var(--small-margin); margin-left: var(--medium-margin); padding-top: var(--medium-margin)"
 >
     <ActionIcon
         on:click={() => handleClose()}

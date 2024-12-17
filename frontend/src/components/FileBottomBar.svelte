@@ -13,7 +13,7 @@
 </script>
 
 <div class="file-bottom-bar">
-    <Flex align="center" style="height: 100%">
+    <Flex align="center" style="height: 100%;">
         <Breadcrumbs size="xs">
             {#each $currentPath as part, i}
                 <Breadcrumbs.Item>
@@ -21,7 +21,7 @@
                         on:click={() => handleToPart(i)}
                         variant="white"
                         size="xs"
-                        style="padding: 0"
+                        style="padding: 0; background-color: transparent"
                         color="gray"
                     >
                         {part}
@@ -35,7 +35,9 @@
 <style>
     .file-bottom-bar {
         width: 100%;
-        height: var(--list-line-height);
-        padding: var(--smaller-margin) var(--small-margin);
+        padding-left: var(--small-margin);
+        background-color: var(--file-bar-bg-color);
+        height: var(--file-bottom-bar-height);
+        padding-bottom: var(--smaller-margin);
     }
 </style>

@@ -19,8 +19,8 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "x-explorer",
-		Width:             1024,
-		Height:            540,
+		Width:             1000,
+		Height:            600,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         true,
