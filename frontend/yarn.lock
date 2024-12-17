@@ -1259,6 +1259,11 @@ svelte-hmr@^0.15.1:
   resolved "https://registry.npmmirror.com/svelte-hmr/-/svelte-hmr-0.15.3.tgz#df54ccde9be3f091bf5f18fc4ef7b8eb6405fbe6"
   integrity sha512-41snaPswvSf8TJUhlkoJBekRrABDXDMdpNpT2tfHIv4JuhgvHqLMhEPGtaQn0BmbNSTkuz2Ed20DF2eHw0SmBQ==
 
+svelte-persisted-store@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npmmirror.com/svelte-persisted-store/-/svelte-persisted-store-0.12.0.tgz#cd9405cec4611df395f4342b382416237834d972"
+  integrity sha512-BdBQr2SGSJ+rDWH8/aEV5GthBJDapVP0GP3fuUCA7TjYG5ctcB+O9Mj9ZC0+Jo1oJMfZUd1y9H68NFRR5MyIJA==
+
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.10.7:
   version "4.10.7"
   resolved "https://registry.npmmirror.com/svelte-preprocess/-/svelte-preprocess-4.10.7.tgz#3626de472f51ffe20c9bc71eff5a3da66797c362"

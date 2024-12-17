@@ -6,7 +6,7 @@ import (
 	"os/user"
 	"path/filepath"
 	"strings"
-	pathobj "x-explorer/src/PathObj"
+	filedata "x-explorer/src/file-data"
 )
 
 // App struct
@@ -43,17 +43,22 @@ func (a *App) GetSplitPath() []string {
 	return strings.Split(a.currentPath, sep)
 }
 
-func (a *App) GetFileList() []pathobj.PathObj {
+func (a *App) GetFileList() []filedata.FileData {
 	files, err := os.ReadDir(a.currentPath)
 	if err != nil {
 		println("Failed to read files in a dir: ", err.Error())
-		return []pathobj.PathObj{}
+		return []filedata.FileData{}
 	}
 
-	returnFiles := []pathobj.PathObj{}
+	returnFiles := []filedata.FileData{}
 
 	for _, file := range files {
-		returnFiles = append(returnFiles, pathobj.NewPathObj(file))
+		info, err := file.Info()
+		if err != nil {
+			println("Failed to read file info: ", file.Name(), "|", err.Error())
+			continue
+		}
+		returnFiles = append(returnFiles, filedata.NewFileData(info))
 	}
 
 	return returnFiles

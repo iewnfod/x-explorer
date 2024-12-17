@@ -1,17 +1,23 @@
-export namespace pathobj {
+export namespace filedata {
 	
-	export class PathObj {
-	    Path: string;
-	    Kind: string;
+	export class FileData {
+	    IsDir: boolean;
+	    ModTime: number;
+	    Mode: number;
+	    Name: string;
+	    Size: number;
 	
 	    static createFrom(source: any = {}) {
-	        return new PathObj(source);
+	        return new FileData(source);
 	    }
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.Path = source["Path"];
-	        this.Kind = source["Kind"];
+	        this.IsDir = source["IsDir"];
+	        this.ModTime = source["ModTime"];
+	        this.Mode = source["Mode"];
+	        this.Name = source["Name"];
+	        this.Size = source["Size"];
 	    }
 	}
 
