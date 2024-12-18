@@ -1,7 +1,8 @@
 <script lang="ts">
-    import {Breadcrumbs, Button, Flex} from '@svelteuidev/core';
+    import {ActionIcon, Breadcrumbs, Button, Flex} from '@svelteuidev/core';
     import {currentPath, separator, setPath} from "../data";
     import {get} from "svelte/store";
+    import {DoubleArrowRight} from "radix-icons-svelte";
 
     function handleToPart(index: number) {
         let path = get(currentPath).slice(0, index+1);
@@ -10,7 +11,16 @@
 </script>
 
 <div class="file-bottom-bar">
-    <Flex align="center" style="height: 100%;">
+    <Flex direction="row" align="center" style="height: 100%; gap: var(--small-margin)">
+        <ActionIcon
+            size="xs"
+            variant="transparent"
+            style="transform: translateY(1px)"
+            on:click={() => setPath('')}
+        >
+            <DoubleArrowRight/>
+        </ActionIcon>
+
         <Breadcrumbs size="xs">
             {#each $currentPath as part, i}
                 <Breadcrumbs.Item>

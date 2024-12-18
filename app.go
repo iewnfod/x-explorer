@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 	filedata "x-explorer/src/file-data"
+
+	"github.com/shirou/gopsutil/disk"
 )
 
 // App struct
@@ -44,6 +46,21 @@ func (a *App) GetSplitPath() []string {
 }
 
 func (a *App) GetFileList() []filedata.FileData {
+	if a.currentPath == "" {
+		partitions, err := disk.Partitions(true)
+		if err != nil {
+			println("Failed to read partitions: ", err.Error())
+		}
+		returnPartitions := []filedata.FileData{}
+		for i := range partitions {
+			returnPartitions = append(returnPartitions, filedata.FileData{
+				Name:  partitions[i].Mountpoint,
+				IsDir: true,
+			})
+		}
+		return returnPartitions
+	}
+
 	files, err := os.ReadDir(a.currentPath)
 	if err != nil {
 		println("Failed to read files in a dir: ", err.Error())
