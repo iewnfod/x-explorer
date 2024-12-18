@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {ActionIcon, Flex, Image} from "@svelteuidev/core";
+    import {ActionIcon, Image} from "@svelteuidev/core";
     import {
         Quit,
         WindowMinimise,
@@ -9,6 +9,8 @@
     import Close from "../assets/close.svg";
     import Minimize from "../assets/minimize.svg";
     import Maximize from "../assets/maximize.svg";
+
+    export let style: string = undefined;
 
     const showCloseIcon = writable(false);
     const showMaximizeIcon = writable(false);
@@ -27,9 +29,9 @@
     }
 </script>
 
-<Flex
-    direction="row"
-    style="gap: var(--small-margin); margin-left: var(--medium-margin); padding-top: var(--medium-margin)"
+<div
+    class="action-bar"
+    style={style}
 >
     <ActionIcon
         on:click={() => handleClose()}
@@ -64,4 +66,12 @@
             <Image src={Maximize}/>
         {/if}
     </ActionIcon>
-</Flex>
+</div>
+
+<style>
+    .action-bar {
+        display: flex;
+        flex-direction: row;
+        gap: var(--small-margin);
+    }
+</style>

@@ -1,11 +1,14 @@
 <script lang="ts">
     import ActionBar from "./components/ActionBar.svelte";
+    import FavoriteList from "./components/FavoriteList.svelte";
+    import {Flex} from "@svelteuidev/core";
 </script>
 
-<div class="left-bar flex flex-col items-center justify-between">
-    <div class="left-bar-container">
-        <ActionBar/>
-    </div>
+<div class="left-bar">
+    <Flex direction="column" style="width: 100%; gap: var(--medium-margin)">
+        <ActionBar style="margin-left: var(--medium-medium-large-margin); margin-top: var(--medium-medium-large-margin)"/>
+        <FavoriteList/>
+    </Flex>
 </div>
 
 <style>
@@ -13,11 +16,10 @@
 		width: 200px;
 		height: 100%;
 		background-color: #e4e4e4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
 		--wails-draggable: drag;
 	}
-    .left-bar-container {
-        margin: var(--small-margin);
-        width: 100%;
-        height: 100%;
-    }
 </style>

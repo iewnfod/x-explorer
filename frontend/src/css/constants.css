@@ -4,8 +4,12 @@
     --small-margin: 0.5rem;
     --smaller-margin: 0.25rem;
     --smaller-smaller-margin: 0.1rem;
+    --medium-small-margin: 0.75rem;
     --medium-margin: 1rem;
-    --file-top-bar-height: 60px;
+    --medium-medium-large-margin: 1.25rem;
+    --medium-large-margin: 1.5rem;
+    --large-margin: 2rem;
+    --file-top-bar-height: 50px;
     --file-bottom-bar-height: var(--list-line-height);
     --file-bar-bg-color: rgb(242, 242, 242);
 }

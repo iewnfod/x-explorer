@@ -1,10 +1,18 @@
 import {derived, get, writable} from "svelte/store";
 import {GetFileList, GetSplitPath, SetCurrentPath} from "../wailsjs/go/main/App";
 import type {filedata} from "../wailsjs/go/models";
-import {preferences, SortType} from "./preference";
+import {addFavorite, isFavorite, preferences, removeFavorite, SortType} from "./preference";
 type FileData = filedata.FileData;
 
+export const separator = writable('/');
+
 export const currentPath = writable<string[]>([]);
+
+export const currentFullPath = derived([separator, currentPath], ([separator, currentPath]) => {
+    return currentPath.join(separator);
+});
+
+export const isCurrentFavorite = writable(isFavorite(get(currentFullPath)));
 
 export const currentTitle = derived([currentPath], ([currentPath]) => {
     return currentPath[currentPath.length - 1] ?? "";
@@ -18,16 +26,19 @@ const currentHistoryIndex = writable<number>(-1);
 export function setPath(path: string, ignorePushHistory: boolean = false) {
     SetCurrentPath(path).then(() => {
         if (!ignorePushHistory) {
-            currentHistoryIndex.set(get(pathHistory).length);
-            pathHistory.update((history) => {
-                history.push(path);
-                return history;
-            });
+            if (path !== get(currentFullPath)) {
+                currentHistoryIndex.set(get(pathHistory).length);
+                pathHistory.update((history) => {
+                    history.push(path);
+                    return history;
+                });
+            }
         }
 
         GetSplitPath().then((p) => {
             currentPath.set(p);
         });
+
         refreshFileList();
     });
 }
@@ -68,3 +79,21 @@ export function refreshFileList() {
         currentList.set(f);
     });
 }
+
+export function toggleFavorite() {
+    const p = get(currentFullPath);
+    if (get(isCurrentFavorite)) {
+        removeFavorite(p);
+    } else {
+        addFavorite(p);
+    }
+    updateIsCurrentFavorite();
+}
+
+export function updateIsCurrentFavorite() {
+    isCurrentFavorite.set(isFavorite(get(currentFullPath)));
+}
+
+currentFullPath.subscribe(() => {
+    updateIsCurrentFavorite();
+});

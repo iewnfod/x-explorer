@@ -1,13 +1,16 @@
 <script lang="ts">
     import FilePart from "./FilePart.svelte";
     import LeftBar from "./LeftBar.svelte";
-    import {setPath} from "./data";
+    import {separator, setPath} from "./data";
     import {SvelteUIProvider} from "@svelteuidev/core";
-    import {GetCurrentPath, OnAppReady} from "../wailsjs/go/main/App";
+    import {GetCurrentPath, GetPathSeparator, OnAppReady} from "../wailsjs/go/main/App";
 
     OnAppReady().then(() => {
         GetCurrentPath().then((path) => {
             setPath(path);
+        });
+        GetPathSeparator().then((s) => {
+            separator.set(s);
         });
     });
 </script>

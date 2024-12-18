@@ -1,14 +1,11 @@
 <script lang="ts">
     import {Breadcrumbs, Button, Flex} from '@svelteuidev/core';
-    import {currentPath, setPath} from "../data";
-    import {GetPathSeparator} from "../../wailsjs/go/main/App";
+    import {currentPath, separator, setPath} from "../data";
     import {get} from "svelte/store";
 
     function handleToPart(index: number) {
-        GetPathSeparator().then((separator: string) => {
-            let path = get(currentPath).slice(0, index+1);
-            setPath(path.join(separator));
-        });
+        let path = get(currentPath).slice(0, index+1);
+        setPath(path.join(get(separator)));
     }
 </script>
 
