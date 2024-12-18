@@ -13,3 +13,9 @@
     --file-bottom-bar-height: var(--list-line-height);
     --file-bar-bg-color: rgb(242, 242, 242);
 }
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
