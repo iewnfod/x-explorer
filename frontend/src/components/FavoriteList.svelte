@@ -3,6 +3,7 @@
     import {preferences} from "../preference";
     import GrayChevronDown from "./base/GrayChevronDown.svelte";
     import {setPath} from "../data";
+    import {getFinalPartOfPath} from "../utils";
 </script>
 
 <div>
@@ -21,7 +22,7 @@
                         size="xs"
                         on:click={() => setPath(favorite)}
                     >
-                        {favorite}
+                        {getFinalPartOfPath(favorite)}
                     </Button>
                 {/each}
             </div>

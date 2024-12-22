@@ -17,6 +17,7 @@
 <style>
 	.file-part {
 		flex-grow: 1;
+        width: var(--file-path-width);
 		height: 100%;
 	}
 </style>

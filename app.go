@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"os"
+	"os/exec"
 	"os/user"
 	"path/filepath"
+	"runtime"
 	"strings"
 	filedata "x-explorer/src/file-data"
 
@@ -87,4 +89,19 @@ func (a *App) SetCurrentPath(path string) {
 
 func (a *App) GetPathSeparator() string {
 	return string(filepath.Separator)
+}
+
+func (a *App) OpenFile(p string) {
+	var err error
+	switch runtime.GOOS {
+	case "linux":
+		err = exec.Command("xdg-open", p).Start()
+	case "darwin":
+		err = exec.Command("open", p).Start()
+	case "windows":
+		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", p).Start()
+	}
+	if err != nil {
+		println("Failed to open file: ", err.Error())
+	}
 }

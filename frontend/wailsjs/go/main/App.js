@@ -22,6 +22,10 @@ export function OnAppReady() {
   return window['go']['main']['App']['OnAppReady']();
 }
 
+export function OpenFile(arg1) {
+  return window['go']['main']['App']['OpenFile'](arg1);
+}
+
 export function SetCurrentPath(arg1) {
   return window['go']['main']['App']['SetCurrentPath'](arg1);
 }

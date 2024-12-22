@@ -1,14 +1,14 @@
 <script lang="ts">
-    import {ActionIcon, Flex, Text} from "@svelteuidev/core";
-    import {ChevronLeft, ChevronRight, Heart, HeartFilled} from "radix-icons-svelte";
+    import {ActionIcon, Flex, Input, Text} from "@svelteuidev/core";
+    import {ChevronLeft, ChevronRight, Heart, HeartFilled, MagnifyingGlass} from "radix-icons-svelte";
     import {
         currentTitle,
         goBackward,
         goForward,
         isBackwardAvailable, isCurrentFavorite,
-        isForwardAvailable, toggleFavorite
+        isForwardAvailable, toggleFavorite, searchText
     } from "../data";
-    import {derived} from "svelte/store";
+    import {derived, get} from "svelte/store";
 
     const TOP_BAR_ICON_SIZE = 20;
 
@@ -42,7 +42,7 @@
                 {$currentTitle}
             </Text>
         </Flex>
-        <Flex direction="row" align="center" style="margin-right: var(--medium-small-margin)">
+        <Flex direction="row" align="center" style="margin-right: var(--medium-small-margin); gap: var(--small-margin)">
             <ActionIcon on:click={() => toggleFavorite()}>
                 {#if ($isCurrentFavorite)}
                     <HeartFilled size={TOP_BAR_ICON_SIZE} color="gray"/>
@@ -50,6 +50,15 @@
                     <Heart size={TOP_BAR_ICON_SIZE} color="gray"/>
                 {/if}
             </ActionIcon>
+            <Input
+                icon={MagnifyingGlass}
+                size="xs"
+                radius="md"
+                variant="unstyled"
+                value={$searchText}
+                on:input={(e) => searchText.set(e.target.value ?? get(searchText))}
+                style="background-color: #FFFFFF; border-radius: var(--small-margin); padding-right: var(--smaller-margin)"
+            />
         </Flex>
     </Flex>
 </div>

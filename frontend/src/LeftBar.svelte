@@ -13,7 +13,7 @@
 
 <style>
 	.left-bar {
-		width: 200px;
+		width: var(--left-part-width);
 		height: 100%;
 		background-color: #e4e4e4;
         display: flex;

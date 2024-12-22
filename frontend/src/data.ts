@@ -20,6 +20,10 @@ export const currentTitle = derived([currentPath], ([currentPath]) => {
 
 export const currentList = writable<FileData[]>([]);
 
+export const selectedList = writable<string[]>([]);
+
+export const searchText = writable<string>("");
+
 const pathHistory = writable<string[]>([]);
 const currentHistoryIndex = writable<number>(-1);
 
@@ -76,6 +80,7 @@ export function refreshFileList() {
                 f.sort((a, b) => a[prefer.sortKey] >= b[prefer.sortKey] ? -1 : 1)
                 break;
         }
+        selectedList.set([]);
         currentList.set(f);
     });
 }

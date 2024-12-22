@@ -12,6 +12,8 @@
     --file-top-bar-height: 50px;
     --file-bottom-bar-height: var(--list-line-height);
     --file-bar-bg-color: rgb(242, 242, 242);
+    --left-part-width: 200px;
+    --file-path-width: calc(100vw - var(--left-part-width));
 }
 
 html {

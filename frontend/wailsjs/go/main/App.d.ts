@@ -12,4 +12,6 @@ export function GetSplitPath():Promise<Array<string>>;
 
 export function OnAppReady():Promise<void>;
 
+export function OpenFile(arg1:string):Promise<void>;
+
 export function SetCurrentPath(arg1:string):Promise<void>;
